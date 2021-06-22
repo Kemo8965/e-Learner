@@ -1,11 +1,15 @@
 <template>
-<v-card width="400" class="mx-auto mt-10">
+<div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card width="400" height="400" class=" mt-16  card">
    <v-card-title>
-       Login with <br> <span class="learn">eLearner</span>
+       Login with <v-spacer/><span class="learn">eLearner</span>
      </v-card-title>
 
      <v-card-text>
-         <form>
+         <form class="mt-14">
      <v-text-field
       v-model="email"
       :error-messages="emailErrors"
@@ -21,12 +25,13 @@
       :error-messages="passwordErrors"
       
       label="Password"
-      type= password
+      :type= "showPassword ? 'text' : 'password' "
        prepend-icon="mdi-lock"
-       append-icon="mdi-eye-off"
+      :append-icon="showPassword? 'mdi-eye' : 'mdi-eye-off'"
       required
       @input="$v.password.$touch()"
       @blur="$v.password.$touch()"
+      @click:append="showPassword = !showPassword"
     ></v-text-field>
    
     <v-card-actions>
@@ -48,23 +53,33 @@
  
      </v-card-text>
    </v-card>
+
+      </v-col>
+
+      <v-col class="">
+          <v-card width="400" height="400" class=" mt-16  card sign-in-img"></v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</div>
 </template>
 
 <<script>
   import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
+  import { required, minLength, email } from 'vuelidate/lib/validators'
 
   export default {
     mixins: [validationMixin],
 
     validations: {
       email: { required, email },
-      password: { required, minLength: maxLength(6) },
+      password: { required, minLength: minLength(6) },
       
       },
     
 
     data: () => ({
+      showPassword: false,
       email: '',
       password:'',
       
@@ -87,7 +102,7 @@
       passwordErrors () {
         const errors = []
         if (!this.$v.password.$dirty) return errors
-        !this.$v.password.maxLength && errors.push('Password must be at least 6 characters long')
+        !this.$v.password.minLength && errors.push('Password must be at least 6 characters long')
         !this.$v.password.required && errors.push('Password is required.')
         return errors
       },
@@ -118,5 +133,14 @@
 <style lang="scss" scoped>
 .learn{
   color:blue;
+
+}
+
+.sign-in-img{
+  background-image: url('../../assets/images/pug2.jpg');
+  right: 2.5rem;
+  width:100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
   </style>

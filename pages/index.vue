@@ -1,93 +1,175 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+  <div>
+    <v-card class="mt-10">
+        <v-card-title>
+          Subjects
+           <v-spacer/>
+           
+         <AddNewSubject/>
+        <v-btn color="warning" class="mx-2">
+          <v-icon>
+            mdi-refresh-circle
+          </v-icon>
+
+          Refresh
+        </v-btn>
         </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
+       
+        
       </v-card>
-    </v-col>
-  </v-row>
+    <v-card class="mt-16">
+      
+      <v-row class="mx-2 py-4">
+        <v-col >
+          <v-card >
+            <v-card-title>
+              English Language
+            </v-card-title>
+            <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="eng">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+        <v-col>
+          <v-card >
+            <v-card-title>
+              Mathematics
+            </v-card-title>
+             <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="math">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+        <v-col>
+          <v-card >
+            <v-card-title>
+              Physics
+            </v-card-title>
+             <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="phy">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+       
+      </v-row>
+
+      
+    </v-card>
+
+    <v-card class="mt-16">
+      <v-row class="mx-2 py-4">
+         <v-col>
+          <v-card >
+            <v-card-title>
+              Chemistry
+            </v-card-title>
+             <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="che">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+        <v-col>
+           <v-card >
+            <v-card-title>
+              Additional Math
+            </v-card-title>
+            
+             <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="addma">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+        <v-col>
+           <v-card >
+            <v-card-title>
+              Literature
+            </v-card-title>
+             <v-content class="mb-8 mx-4">
+              Lessons: 7
+              <v-spacer/>
+              Duration: 2 hours
+            </v-content>
+            <v-btn color="info" class="mb-8 mx-4" @click="lit">
+              View Subject
+            </v-btn>
+            <v-spacer/>
+          </v-card>
+        </v-col>
+       
+      </v-row>
+
+      
+    </v-card>
+
+    
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
-export default {
-  components: {
-    Logo,
-    VuetifyLogo,
-  },
-}
+  export default {
+    methods:{
+      async eng(){
+        await this.$router.push('/subjects/english/english') 
+      },
+
+      async math(){
+        await this.$router.push('/subjects/math/math') 
+      },
+
+      async phy(){
+        await this.$router.push('/subjects/physics/physics') 
+      },
+
+      async che(){
+        await this.$router.push('/subjects/chemistry/chemistry') 
+      },
+
+      async addma(){
+        await this.$router.push('/subjects/addma/addma') 
+      },
+
+      async lit(){
+        await this.$router.push('/subjects/lit/lit') 
+      },
+
+    async addNewSubject() {
+    await this.$router.push('/inspire')
+    },
+    }
+  }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
